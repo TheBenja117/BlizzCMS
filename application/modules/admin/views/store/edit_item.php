@@ -72,6 +72,7 @@
                         <option value="1" <?php if($this->admin_model->getItemSpecifyPriceType($idlink) == 1) echo 'selected'; ?>><?= $this->lang->line('option_dp'); ?></option>
                         <option value="2" <?php if($this->admin_model->getItemSpecifyPriceType($idlink) == 2) echo 'selected'; ?>><?= $this->lang->line('option_vp'); ?></option>
                         <option value="3" <?php if($this->admin_model->getItemSpecifyPriceType($idlink) == 3) echo 'selected'; ?>><?= $this->lang->line('option_dp_vp'); ?></option>
+                        <option value="4" <?php if($this->admin_model->getItemSpecifyPriceType($idlink) == 4) echo 'selected'; ?>><?= $this->lang->line('option_dp_or_vp'); ?></option>
                       </select>
                     </div>
                   </div>

@@ -95,6 +95,7 @@ class Store extends MX_Controller {
     public function addtocart()
     {
         $id = $this->input->post('value');
+        $type = $this->input->post('type');
 
         $data = array(
             'id' => $id,
@@ -107,6 +108,16 @@ class Store extends MX_Controller {
             'vp' => $this->store_model->getPriceVP($id),
             'options' => array('Key' => uniqid())
         );
+
+        if ($type == 1) 
+        {
+            $data['dp'] = $this->store_model->getPriceDP($id);
+            $data['vp'] = 0;
+        } else if ($type == 2)
+        {
+            $data['dp'] = 0;
+            $data['vp'] = $this->store_model->getPriceVP($id);
+        }
 
         $qq = $this->cart->insert($data);
 

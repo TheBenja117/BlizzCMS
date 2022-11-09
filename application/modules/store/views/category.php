@@ -82,10 +82,12 @@
                               <span class="blizzcms-item-price"><span uk-tooltip="title:<?= $this->lang->line('panel_vp'); ?>"><i class="vp-icon"></i></span><?= $items->vp ?></span>
                             <?php elseif ($items->price_type == 3) : ?>
                               <span class="blizzcms-item-price"><span uk-tooltip="title:<?= $this->lang->line('panel_dp'); ?>"><i class="dp-icon"></i></span><?= $items->dp ?> <span class="uk-badge">&amp;</span> <span uk-tooltip="title:<?= $this->lang->line('panel_vp'); ?>"><i class="vp-icon"></i></span><?= $items->vp ?></span>
+                            <?php elseif ($items->price_type == 4) : ?>
+                              <span class="blizzcms-item-price"><span uk-tooltip="title:<?= $this->lang->line('panel_dp'); ?>"><i class="dp-icon"></i></span><?= $items->dp ?> <span class="uk-badge">or</span> <span uk-tooltip="title:<?= $this->lang->line('panel_vp'); ?>"><i class="vp-icon"></i></span><?= $items->vp ?></span>
                             <?php endif; ?>
                           </div>
                           <div class="uk-width-auto">
-                            <button class="uk-button uk-button-default uk-button-small" id="button_item<?= $items->id ?>" value="<?= $items->id ?>" onclick="AddItem(event, this.value)"><i class="fas fa-cart-plus"></i> <?= $this->lang->line('button_cart'); ?></button>
+                            <button class="uk-button uk-button-default uk-button-small" id="button_item<?= $items->id ?>" value="<?= $items->id ?>" onclick="AddItem(event, this.value, <?= $items->price_type ?>)"><i class="fas fa-cart-plus"></i> <?= $this->lang->line('button_cart'); ?></button>
                           </div>
                         </div>
                       </div>
@@ -98,16 +100,49 @@
         </div>
       </div>
     </section>
-
+    <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <script>
-      function AddItem(e, value) {
+      async function AddItem(e, value, type = 1) {
         e.preventDefault();
-
+        if (type === 4) {
+            let response =  await Swal.fire({
+              title: '<strong style="font-family:Arial, Helvetica, sans-serif;color:#fff"><?= $this->lang->line('store_select_payment'); ?></strong>',
+              showDenyButton: true,
+              showCancelButton: true,
+              confirmButtonColor: "#2890c8",
+              denyButtonColor: "#2890c8",
+              background: "rgba(9, 85, 135, 0.97)",
+              confirmButtonText: 'DP',
+              denyButtonText: 'VP'
+            })
+            if (response.isConfirmed) {
+              await Swal.fire({
+                title: '<strong style="font-family:Arial, Helvetica, sans-serif;color:#fff"><?= $this->lang->line('store_dp_selected'); ?></strong>',
+                background: "rgba(9, 85, 135, 0.97)",
+                icon: 'success',
+                showConfirmButton: false,
+                timer: 1500
+              })
+              type = 1;
+            } else if (response.isDenied) {
+              await Swal.fire({
+                title: '<strong style="font-family:Arial, Helvetica, sans-serif;color:#fff"><?= $this->lang->line('store_vp_selected'); ?></strong>',
+                background: "rgba(9, 85, 135, 0.97)",
+                icon: 'success',
+                showConfirmButton: false,
+                timer: 1500
+              })
+              type = 2;
+            } else {
+              return;
+            }
+        }
         $.ajax({
           url: "<?= base_url($lang . '/cart/add'); ?>",
           method: "POST",
           data: {
-            value
+            value,
+            type
           },
           dataType: "text",
           success: function(response) {

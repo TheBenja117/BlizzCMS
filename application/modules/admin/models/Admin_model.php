@@ -973,6 +973,10 @@ class Admin_model extends CI_Model {
             $setdp = $pricedp;
             $setvp = $pricevp;
         }
+        else if($price_type == 4) {
+            $setdp = $pricedp;
+            $setvp = $pricevp;
+        }
 
         $update = array(
             'name' => $name,

@@ -72,6 +72,7 @@
                         <option value="1"><?= $this->lang->line('option_dp'); ?></option>
                         <option value="2"><?= $this->lang->line('option_vp'); ?></option>
                         <option value="3"><?= $this->lang->line('option_dp_vp'); ?></option>
+                        <option value="4"><?= $this->lang->line('option_dp_or_vp'); ?></option>
                       </select>
                     </div>
                   </div>
