@@ -1,8 +1,12 @@
     <section class="uk-section uk-section-xsmall uk-padding-remove slider-section">
-      <div class="uk-background-cover uk-height-small header-section"></div>
+      <div class="uk-background-cover uk-height-small-slider header-section-pvp"></div>
     </section>
-    <section class="uk-section uk-section-xsmall main-section" data-uk-height-viewport="expand: true">
+    <section class="uk-section uk-section-xsmall main-section-slider" data-uk-height-viewport="expand: true">
       <div class="uk-container">
+      	<img
+          class="uk-divider-container uk-align-center"
+          src="<?= $template['location'].'assets/images/separator.png'?>"
+        />  
         <h4 class="uk-h4 uk-text-uppercase uk-text-bold"><i class="fas fa-fist-raised"></i> <?=$this->lang->line('tab_pvp_statistics');?></h4>
         <ul class="uk-subnav uk-subnav-pill" uk-switcher="connect: .pvp-statistics">
           <?php foreach ($realms as $charsMultiRealm): ?>

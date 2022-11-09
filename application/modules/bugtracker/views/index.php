@@ -1,8 +1,12 @@
     <section class="uk-section uk-section-xsmall uk-padding-remove slider-section">
-      <div class="uk-background-cover uk-height-small header-section"></div>
+      <div class="uk-background-cover uk-height-small-slider header-section-bugtracker"></div>
     </section>
     <section class="uk-section uk-section-xsmall main-section" data-uk-height-viewport="expand: true">
       <div class="uk-container">
+        <img
+          class="uk-divider-container uk-align-center"
+          src="<?= $template['location'].'assets/images/separator.png'?>"
+        />
         <div class="uk-grid uk-grid-medium" data-uk-grid>
           <div class="uk-width-1-4@m">
             <ul class="uk-nav uk-nav-default myaccount-nav">
