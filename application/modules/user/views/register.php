@@ -23,6 +23,12 @@
             <p><i class="far fa-times-circle"></i> <?= $msg_notification_fail_google; ?></p>
           </div>
         <?php endif; ?>
+        <?php if(isset($msg_notification_activation_code)): ?>
+          <div class="uk-alert-success " uk-alert>
+            <a class="uk-alert-close" uk-close></a>
+            <p><i class="far fa-times-circle"></i> <?= $msg_notification_activation_code; ?></p>
+          </div>
+        <?php endif; ?>
         <?= form_open(current_url()); ?>
         <div class="uk-margin uk-light">
           <label class="uk-form-label"><?= lang('label_login_info'); ?></label>

@@ -1,10 +1,15 @@
     <section class="uk-section uk-section-xsmall uk-padding-remove slider-section">
-      <div class="uk-background-cover uk-height-small header-section"></div>
+      <div class="uk-background-cover uk-height-small-slider header-section-account"></div>
     </section>
-    <section class="uk-section uk-section-xsmall main-section" data-uk-height-viewport="expand: true">
+    <section class="uk-section uk-section-xsmall main-section-slider" data-uk-height-viewport="expand: true">
       <div class="uk-container">
+      <img
+          class="uk-divider-container uk-align-center"
+          src="<?= $template['location'].'assets/images/separator.png'?>"
+        />  
         <div class="uk-grid uk-grid-medium" data-uk-grid>
           <div class="uk-width-1-4@m">
+            <div class="uk-nav-myaccount">
             <ul class="uk-nav uk-nav-default myaccount-nav">
               <?php if($this->wowmodule->getStatusModule('User Panel')): ?>
               <li class="uk-active"><a href="<?= base_url('panel'); ?>"><i class="fas fa-user-circle"></i> <?= $this->lang->line('tab_account'); ?></a></li>
@@ -31,13 +36,14 @@
               <?php endif; ?>
             </ul>
           </div>
+          </div>
           <div class="uk-width-3-4@m">
             <h4 class="uk-h4 uk-text-uppercase uk-text-bold"><?= $this->lang->line('tab_account'); ?></h4>
             <div class="uk-card-default myaccount-card uk-margin-small">
               <div class="uk-card-header">
                 <div class="uk-grid uk-grid-small">
                   <div class="uk-width-expand@m">
-                    <h5 class="uk-h5 uk-text-uppercase uk-text-bold"><i class="fas fa-info-circle"></i> <?= $this->lang->line('panel_account_details'); ?></h5>
+                    <h5 class="uk-h5 uk-text-uppercase uk-text-bold uk-text-title"><i class="fas fa-info-circle"></i> <?= $this->lang->line('panel_account_details'); ?></h5>
                   </div>
                   <div class="uk-width-auto@m">
                     <a href="<?= base_url('settings'); ?>" class="uk-button uk-button-default uk-button-small"><i class="fas fa-user-edit"></i> <?= $this->lang->line('button_account_settings'); ?></a>
@@ -67,7 +73,7 @@
             </div>
             <div class="uk-card-default myaccount-card uk-margin-small">
               <div class="uk-card-header">
-                <h5 class="uk-h5 uk-text-uppercase uk-text-bold"><i class="fas fa-users"></i> <?= $this->lang->line('panel_chars_list'); ?></h5>
+                <h5 class="uk-h5 uk-text-uppercase uk-text-bold uk-text-title"><i class="fas fa-users"></i> <?= $this->lang->line('panel_chars_list'); ?></h5>
               </div>
               <div class="uk-card-body">
                 <div class="uk-grid uk-child-width-1-1 uk-margin-small" data-uk-grid>
