@@ -8,7 +8,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
  *  Write the name of your website this will appear by default.
  *
 */
-$config['website_name'] = 'MoonShard-WoW';
+$config['website_name'] = '';
 
 /**
  *
@@ -35,7 +35,7 @@ $config['maintenance_mode'] = '0';
  *  Write the invitation of your discord channel.
  *
 */
-$config['discord_invitation'] = 'U2XDhH3A';
+$config['discord_invitation'] = '';
 
 /**
  *
@@ -44,7 +44,7 @@ $config['discord_invitation'] = 'U2XDhH3A';
  *  Write the realmlist used on your server to publish it on the website.
  *
 */
-$config['realmlist'] = 'logon.moonshard-wow.com';
+$config['realmlist'] = '';
 
 /**
  *  Bnet enabled?
@@ -52,7 +52,7 @@ $config['realmlist'] = 'logon.moonshard-wow.com';
  *  true for Emulators BattleNet.
  *  false for not bnetserver
  */
-$config['bnet_enabled'] = false;
+$config['bnet_enabled'] = true;
 
  /**
  *  Emulator
@@ -63,7 +63,7 @@ $config['bnet_enabled'] = false;
  *  hex = For emulators Mangos  (HEX6 Compatibility)
  *
  */
-$config['emulator'] = 'hex';
+$config['emulator'] = 'srp6';
 
 /**
  *
@@ -82,7 +82,7 @@ $config['emulator'] = 'hex';
  *  9 = Shadowlands
  *
 */
-$config['expansion'] = '4';
+$config['expansion'] = '1';
 
 /**
  *
@@ -94,7 +94,7 @@ $config['expansion'] = '4';
  *  Default: default
  *
 */
-$config['theme_name'] = 'moonshard';
+$config['theme_name'] = 'default';
 
 /**
  *
@@ -192,7 +192,7 @@ $config['mod_access_level'] = '2';
  *  Warning: Don't change this configuration.
  *
 */
-$config['migrate_status'] = '0';
+$config['migrate_status'] = '1';
 
 /**
  *
