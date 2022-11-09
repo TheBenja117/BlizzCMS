@@ -134,7 +134,7 @@
                       >
                     </li>
                     <?php endif; ?>
-                    <?php if($this->wowmodule->getACPStatus() == '1'): ?>
+                    <?php if($this->wowmodule->getStatusModule('Admin Panel')): ?>
                     <?php if($this->wowauth->getRank($this->session->userdata('wow_sess_id'))
                     >= config_item('admin_access_level')): ?>
                     <li class="uk-navbar-dropdown-li">
