@@ -369,6 +369,12 @@ $route[$lang.'/admin/vote/logs'] = 'admin/votelogs';
 $route[$lang.'/admin/checksoap'] = 'admin/checkSoap';
 
 /**
+ * Recruit a friend
+ */
+$route[$lang.'/recruit'] = 'recruit';
+$route[$lang.'/recruit/add'] = 'recruit/add';
+
+/**
  * Armory
  */
 $route[$lang.'/armory'] = 'armory/search';
