@@ -367,3 +367,10 @@ $route[$lang.'/admin/vote/logs'] = 'admin/votelogs';
  *  To check the soap connection
 */
 $route[$lang.'/admin/checksoap'] = 'admin/checkSoap';
+
+/**
+ * Armory
+ */
+$route[$lang.'/armory'] = 'armory/search';
+$route[$lang.'/armory/result'] = 'armory/result';
+$route[$lang.'/armory/realm/(:num)/player/(:num)'] = 'armory/index/$2/$3';
