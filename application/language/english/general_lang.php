@@ -54,6 +54,8 @@ $lang['tab_error'] = 'Error 404';
 $lang['tab_maintenance'] = 'Maintenance';
 $lang['tab_online'] = 'Online Players';
 $lang['tab_download'] = 'Download';
+$lang['tab_armory'] = 'Armory';
+$lang['tab_how_connect'] = 'How to connect';
 
 /*Panel Navbar*/
 $lang['navbar_vote_panel'] = 'Vote Panel';
@@ -281,3 +283,32 @@ $lang['soap_send_body'] = 'Thank you for buying in our store!';
 /*Email Lang*/
 $lang['email_password_recovery'] = 'Password Recovery';
 $lang['email_account_activation'] = 'Account Activation';
+
+/* Section about lang */
+$lang['section_about_title'] = 'Official launch';
+$lang['section_about_description'] = 'We invite you to enjoy this great experience in MoonShard-WoW with the launch of our first Semi-progressive realm
+on October 28, 2022. You will be able to enjoy all Cataclysm content until patch 4.3.4 and you can also participate in
+our first tournament which will have a prize of 100 dollars that will be delivered to the winners of the 2v2 Tournament through Paypal.
+If you need more information contact us through our Discord.';
+
+/* Section features lang */
+$lang['image_how_connect'] = 'how_connect.png';
+$lang['image_information_server'] = 'information_server.png';
+$lang['section_features_title_one'] = "Let's play!";
+$lang['section_features_description_one'] = 'Adalid Deathwing is waiting for you... Begin your adventure!';
+
+$lang['section_features_title_two'] = 'Do you want to know more about the server?';
+$lang['section_features_description_two'] = 'Adalid enters and learns more about the content of this expansion.';
+
+/* Section armory lang */
+$lang['armory_search_title'] = 'Armory search';
+$lang['name_title'] = 'Name';
+$lang['level_title'] = 'Level';
+$lang['race_title'] = 'Race';
+$lang['class_title'] = 'Class';
+$lang['stats_title'] = 'Player Stats';
+$lang['health_title'] = 'Health';
+$lang['achievement_title'] = 'Achievements';
+$lang['deaths_title'] = 'Deaths';
+$lang['honor_title'] = 'Honor';
+$lang['conquest_title'] = 'Conquest';

@@ -61,6 +61,7 @@ $lang['notification_usernamepass_not_match'] = 'La contraseña no coincide con e
 $lang['notification_same_password'] = 'La contraseña es la misma.';
 $lang['notification_currentpass_not_match'] = 'La contraseña actual no es correcta';
 $lang['notification_used_email'] = 'El Correo ya está en uso';
+$lang['notification_used_email_review'] = 'El Correo ya está en uso. Por favor revise su correo electrónico para activar su cuenta.';
 $lang['notification_email_not_match'] = 'Los correos electrónicos no coinciden';
 $lang['notification_username_not_match'] = 'El usuario no coincide';
 $lang['notification_expansion_not_found'] = 'Expansión no encontrada';
@@ -161,3 +162,13 @@ $lang['notification_cms_update_error'] = 'El CMS no pudo ser actualizado';
 $lang['notification_cms_not_updated'] = 'No se ha encontrado una nueva versión para actualizar';
 
 $lang['notification_select_category'] = 'No es una subcategoria';
+
+/* Notification Recruited a friend */
+$lang['notification_already_recruited'] = 'Ya tienes un amigo reclutado';
+$lang['notification_id_not_empty'] = 'Debes ingresar el ID de tu amigo';
+$lang['notification_not_yourself'] = 'No puedes reclutarte a ti mismo';
+$lang['notification_decline_order'] = 'No hemos podido procesar su pedido. Por favor verifique los datos';
+$lang['notification_accepted_order'] = 'Has reclutado a tu amigo con éxito';
+
+/* Notification Armory */
+$lang['notification_search_succesful'] = 'Búsqueda realizada con éxito';

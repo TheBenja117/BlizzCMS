@@ -54,6 +54,9 @@ $lang['tab_error'] = 'Error 404';
 $lang['tab_maintenance'] = 'Mantenimiento';
 $lang['tab_online'] = 'Jugadores en linea';
 $lang['tab_download'] = 'Descargas';
+$lang['tab_armory'] = 'Armería';
+$lang['tab_armory_player'] = 'Armería jugador';
+$lang['tab_how_connect'] = "¿Cómo conectarse?";
 
 /*Panel Navbar*/
 $lang['navbar_vote_panel'] = 'Panel de Votos';
@@ -280,3 +283,32 @@ $lang['soap_send_body'] = '¡Gracias por comprar en nuestra tienda!';
 /*Email Lang*/
 $lang['email_password_recovery'] = 'Recuperación de contraseña';
 $lang['email_account_activation'] = 'Activación de cuenta';
+
+/* Section about lang */
+$lang['section_about_title'] = 'Lanzamiento oficial';
+$lang['section_about_description'] = 'Te invitamos a disfrutar de esta gran experiencia en MoonShard-WoW con el lanzamiento de nuestro primero reino Semi-progresivo
+el 28 de Octubre de 2022. Podrás disfrutar de todo el contenido de Cataclysm hasta el parche 4.3.4 y además puedes participar en
+nuestro primer torneo el cual tendrá como premio 120 dólares que serán entregados a los ganadores del Torneo 2v2 por medio de Paypal.
+Si necesitas más información contactanos a través de nuestro Discord.';
+
+/* Section features lang */
+$lang['image_how_connect'] = 'como_conectar.png';
+$lang['image_information_server'] = 'informacion_servidor.png';
+$lang['section_features_title_one'] = '¡Vamos a jugar!';
+$lang['section_features_description_one'] = 'Adalid Alamuerte te esta esperando... ¡Empieza esta nueva aventura!';
+
+$lang['section_features_title_two'] = '¿Quieres saber más sobre el servidor?';
+$lang['section_features_description_two'] = 'Adalid entra y conoce más sobre el contenido de esta expansión.';
+
+/* Section armory lang */
+$lang['armory_search_title'] = 'Busqueda de armadura';
+$lang['name_title'] = 'Nombre';
+$lang['level_title'] = 'Nivel';
+$lang['race_title'] = 'Raza';
+$lang['class_title'] = 'Clase';
+$lang['stats_title'] = 'Estadísticas del jugador';
+$lang['health_title'] = 'Salud';
+$lang['achievement_title'] = 'Logros';
+$lang['deaths_title'] = 'Muertes';
+$lang['honor_title'] = 'Honor';
+$lang['conquest_title'] = 'Conquista';

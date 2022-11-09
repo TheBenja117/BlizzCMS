@@ -62,6 +62,7 @@ $lang['notification_same_password'] = 'The password is the same.';
 $lang['notification_currentpass_not_match'] = 'Old Password do not match';
 $lang['notification_usernamepass_not_match'] = 'The password do not match for this username';
 $lang['notification_used_email'] = 'Email in use';
+$lang['notification_used_email_review'] = 'Email in use. please review your email';
 $lang['notification_email_not_match'] = 'Email do not match';
 $lang['notification_username_not_match'] = 'Username do not match';
 $lang['notification_expansion_not_found'] = 'Expansion not found';
@@ -162,3 +163,13 @@ $lang['notification_cms_update_error'] = 'The CMS could not be updated';
 $lang['notification_cms_not_updated'] = 'A new version has not been found to update';
 
 $lang['notification_select_category'] = 'It is not subcategory';
+
+/* Notification Recruited a friend */
+$lang['notification_already_recruited'] = 'You already have a friend recruited';
+$lang['notification_id_not_empty'] = 'You must enter your friend\'s ID';
+$lang['notification_not_yourself'] = 'You can\'t recruit yourself';
+$lang['notification_decline_order'] = 'We have not been able process your order. Please check the data';
+$lang['notification_accepted_order'] = 'You\'ve recruited your friend successfully';
+
+/* Notification Armory */
+$lang['notification_search_succesful'] = 'Search successful';
