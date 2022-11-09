@@ -231,6 +231,7 @@ $lang['option_change_race'] = 'Change Race';
 $lang['option_dp'] = 'DP';
 $lang['option_vp'] = 'VP';
 $lang['option_dp_vp'] = 'DP & VP';
+$lang['option_dp_or_vp'] = 'DP or VP';
 $lang['option_internal_url'] = 'Internal URL';
 $lang['option_external_url'] = 'External URL';
 $lang['option_on'] = 'On';

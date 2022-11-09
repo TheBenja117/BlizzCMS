@@ -275,6 +275,9 @@ $lang['store_top_items'] = 'TOP Items';
 $lang['store_cart_added'] = 'You have added';
 $lang['store_cart_in_your'] = 'in your shopping cart';
 $lang['store_cart_no_items'] = 'You do not have items in your cart.';
+$lang['store_select_payment'] = 'Select Payment Method';
+$lang['store_dp_selected'] = 'Donor Points Selected';
+$lang['store_vp_selected'] = 'Vote Points Selected';
 
 /*Soap Lang*/
 $lang['soap_send_subject'] = 'Store Purchase';
