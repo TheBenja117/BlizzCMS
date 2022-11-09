@@ -21,7 +21,7 @@ $config['paypal_currency'] = 'USD';
  * live    = Ready for production
  *
 */
-$config['paypal_mode'] = 'sandbox';
+$config['paypal_mode'] = 'live';
 
 /**
  *
@@ -31,7 +31,7 @@ $config['paypal_mode'] = 'sandbox';
  * https://developer.paypal.com/developer/applications
  *
 */
-$config['paypal_userid'] = 'AeEKmkcWH_NGf5Uxkoos5ESv3fffSBnlC1b-BJTAUF2vP02Klwa_IXXzUKqtP1tGZHF_gCRPjNjyBo7V';
+$config['paypal_userid'] = 'AZmhhGpX_yDBygQkMLWVNPsP12qqXv38xEILeE1H8hyIMcltezDJ24eSGEJD7NlAIb2pUOAro4-lgCP3';
 
 /**
  *
@@ -41,7 +41,7 @@ $config['paypal_userid'] = 'AeEKmkcWH_NGf5Uxkoos5ESv3fffSBnlC1b-BJTAUF2vP02Klwa_
  * https://developer.paypal.com/developer/applications
  *
 */
-$config['paypal_secretpass'] = 'EEaly2bYOVTbv1hsMPesPESGF-fFyFm_HMWij_0mFiiRAEibc-SdSeqCMPFlF0ziuzsZXNcBXxecsn2V';
+$config['paypal_secretpass'] = 'EBvnd3cw-3cQmZTJB7RHQdLIpae6kba7KYpqqIpxUyRmq2pfLXuRglyBXHTEHOGQI2F0EmHNfqXNPkqA';
 
 /**
  *

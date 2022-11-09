@@ -277,41 +277,70 @@ class User_model extends CI_Model
 			$password_generated = "";
 			$password_generated = substr(str_shuffle($allowed_chars), 0, 14);
 			$newpass = $password_generated;
-			$newpassI = $this->wowauth->Account($username, $newpass);
-			$newpassII = $this->wowauth->Battlenet($email, $newpass);
+			$salt = strtoupper(bin2hex(random_bytes(32)));
+			$password_hashed = $this->wowauth->game_hash($username, $newpass, 'hex', $salt);
+			$accupdate = [
+				'v' => $password_hashed,
+				's' => $salt,
+				'last_ip' => '127.0.0.1',
+			];
+			$this->auth->where('id', $ucheck)->update('account', $accupdate);
 
-			if ($this->wowgeneral->getExpansionAction() == 1) {
-				$accupdate = [
-					'sha_pass_hash' => $newpassI,
-					'sessionkey' => '',
-					'v' => '',
-					's' => ''
-				];
+			$template = 'mail-forgot-password.php';
+			$data = [
+				'username' => $username,
+				'password' => $password_generated,
+			];
 
-				$this->auth->where('id', $ucheck)->update('account', $accupdate);
-			} else {
-				$accupdate = [
-					'sha_pass_hash' => $newpassI,
-					'sessionkey' => '',
-					'v' => '',
-					's' => ''
-				];
-
-				$this->auth->where('id', $ucheck)->update('account', $accupdate);
-
-				$this->auth->set('sha_pass_hash', $newpassII)->where('id', $echeck)->update('battlenet_accounts');
-			}
-
-			$mail_message = 'Hi, <span style="font-weight: bold;text-transform: uppercase;">' . $username . '</span> You have sent a request for your account password to be reset.<br>';
-			$mail_message .= 'Your new password is: <span style="font-weight: bold;">' . $password_generated . '</span><br>';
-			$mail_message .= 'Please change your password again as soon as you log in!<br>';
-			$mail_message .= 'Kind regards,<br>';
-			$mail_message .= $this->config->item('email_settings_sender_name') . ' Support.';
-
-			return $this->wowgeneral->smtpSendEmail($email, $this->lang->line('email_password_recovery'), $mail_message);
+			return $this->wowgeneral->smtpSendEmail($email, $this->lang->line('email_password_recovery'), $template, $data);
 		} else {
 			return 'sendErr';
 		}
+	}
+
+	/**
+	 * @return [type]
+	 */
+	public function sendActivationCode($username, $email, $password)
+	{
+		$allowed_chars = "0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ";
+		$code_generated = "";
+		$code_generated = $this->generate_string($allowed_chars, 32);
+		$code = $code_generated;
+
+		$date = $this->wowgeneral->getTimestamp();
+		$emulator = $this->config->item('emulator');
+		$password_hashed = '';
+		$salt = '';
+
+		if ($emulator == "srp6") {
+			$salt = random_bytes(32);
+			$password_hashed = $this->wowauth->game_hash($username, $password, 'srp6', $salt);
+		} elseif ($emulator == "hex") {
+			$salt = strtoupper(bin2hex(random_bytes(32)));
+			$password_hashed = $this->wowauth->game_hash($username, $password, 'hex', $salt);
+		} elseif ($emulator == "old-trinity") {
+			$password_hashed = $this->wowauth->game_hash($username, $password);
+		}
+
+		$pending = [
+			'username' => $username,
+			'email' => $email,
+			'password' => $password_hashed,
+			'password_bnet' => $salt,
+			'expansion' => $this->config->item('expansion'),
+			'joindate' => $date,
+			'key' => $code
+		];
+
+		$this->db->insert('pending_users', $pending);
+		$template = 'mail-activation.php';
+
+		$data = array(
+			'code' => $code
+		);
+
+		return $this->wowgeneral->smtpSendEmail($email, $this->lang->line('email_account_activation'), $template, $data);
 	}
 
 	/**
@@ -375,38 +404,16 @@ class User_model extends CI_Model
 		$temp = $this->getTempUser($key);
 
 		if ($check == "1") {
-			if ($this->wowgeneral->getExpansionAction() == 1) {
 				$data = [
 					'username' => $temp['username'],
-					'sha_pass_hash' => $temp['password'],
+					'v' => $temp['password'],
+					's' => $temp['password_bnet'],
 					'email' => $temp['email'],
 					'expansion' => $temp['expansion'],
+					'last_ip' => '127.0.0.1' 
 				];
 
 				$this->auth->insert('account', $data);
-			} else {
-				$data = [
-					'username' => $temp['username'],
-					'sha_pass_hash' => $temp['password'],
-					'email' => $temp['email'],
-					'expansion' => $temp['expansion'],
-					'battlenet_index' => '1',
-				];
-
-				$this->auth->insert('account', $data);
-
-				$id = $this->wowauth->getIDAccount($temp['username']);
-
-				$data1 = [
-					'id' => $id,
-					'email' => $temp['email'],
-					'sha_pass_hash' => $temp['password_bnet']
-				];
-
-				$this->auth->insert('battlenet_accounts', $data1);
-
-				$this->auth->set('battlenet_account', $id)->where('id', $id)->update('account');
-			}
 
 			$id = $this->wowauth->getIDAccount($temp['username']);
 
@@ -580,6 +587,23 @@ class User_model extends CI_Model
 		}
 		
 		return true;
-	 }
+	}
 
+	/**
+	 * @param mixed $input
+	 * @param mixed $strength = 16
+	 * 
+	 * @return [type]
+	 */
+	protected function generate_string($input, $strength = 16)
+	{
+		$input_length = strlen($input);
+		$random_string = '';
+		for ($i = 0; $i < $strength; $i++) {
+			$random_character = $input[mt_rand(0, $input_length - 1)];
+			$random_string .= $random_character;
+		}
+
+		return $random_string;
+	}
 }

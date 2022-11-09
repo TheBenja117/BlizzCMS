@@ -602,12 +602,13 @@ class General_model extends CI_Model {
      *
      * @param mixed $to
      * @param mixed $subject
-     * @param mixed $message
+     * @param mixed $template
+     * @param mixed $data
      * 
      * @return [type]
      * 
      */
-    public function smtpSendEmail($to, $subject, $message)
+    public function smtpSendEmail($to, $subject, $template, $data)
     {
         $this->load->library('email');
 
@@ -628,7 +629,7 @@ class General_model extends CI_Model {
         $this->email->to($to);
         $this->email->from($this->config->item('email_settings_sender'), $this->config->item('email_settings_sender_name'));
         $this->email->subject($subject);
-        $this->email->message($message);
+        $this->email->message($this->load->view('../modules/user/views/'. $template, $data, TRUE));
 
         return $this->email->send();
     }

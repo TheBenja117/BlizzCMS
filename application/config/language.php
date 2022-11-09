@@ -27,18 +27,6 @@ $config['supported_languages'] = [
         'folder' => 'english',
         'direction' => 'ltr',
         'codes' => ['en', 'english', 'en_US'],
-    ],
-    'fr' => [
-        'name' => 'French',
-        'folder' => 'french',
-        'direction' => 'ltr',
-        'codes' => ['fr', 'French', 'fr_FR'],
-    ],
-    'de' => [
-        'name' => 'Deutsch',
-        'folder' => 'german',
-        'direction' => 'ltr',
-        'codes' => ['de', 'german', 'de_DE'],
     ]
 ];
 
@@ -64,7 +52,7 @@ $config['default_language'] = 'en';
   |    FALSE
   |
  */
-$config['detect_language'] = FALSE;
+$config['detect_language'] = TRUE;
 
 /*
   |--------------------------------------------------------------------------

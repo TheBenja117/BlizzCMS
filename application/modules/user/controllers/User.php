@@ -216,17 +216,35 @@ class User extends MX_Controller {
 						return false;
 					}
 				}
-
-				$register = $this->user_model->insertRegister($username, $email, $password, $emulator);
-
-				if ($register)
+				
+				if ($this->config->item('account_activation_required') === true)
 				{
-					redirect(site_url('login'));
-				}
-				else
-				{
-					$data['msg_notification_account_not_created'] = lang('notification_account_not_created');
+					if ($this->user_model->getIDPendingEmail($email) > 0)
+					{
+						$data['msg_notification_used_email'] = lang('notification_used_email_review');
+						$this->template->build('register', $data);
+						return false;
+					}
+					$this->user_model->sendActivationCode($username, $email, $password);
+					$data['msg_notification_activation_code'] = lang('notification_account_activation');
 					$this->template->build('register', $data);
+				} else
+				{
+					$register = $this->user_model->insertRegister($username, $email, $password, $emulator);
+					if ($register) 
+				if ($register)
+					if ($register) 
+				if ($register)
+					if ($register) 
+				if ($register)
+					if ($register) 
+					{
+						redirect(site_url('login'));
+					} else
+					{
+						$data['msg_notification_account_not_created'] = lang('notification_account_not_created');
+						$this->template->build('register', $data);
+					}
 				}
 			}
 		}
