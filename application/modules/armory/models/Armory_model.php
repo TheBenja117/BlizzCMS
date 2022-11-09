@@ -38,8 +38,9 @@ class armory_model extends CI_Model
         return $this->multirealm->select('guid, name, level, class, race, totalKills')->like('LOWER(name)', strtolower($search))->get('characters');
     }
 
-    public function getHonorPoints($MultiRealm, $guid)
+    public function getHonorPoints($realm, $guid)
     {
+        $MultiRealm = $this->wowrealm->getRealmConnectionData($realm);
         $this->multirealm = $MultiRealm;
         $this->multirealm->select('total_count');
         $this->multirealm->from('character_currency');
@@ -47,8 +48,9 @@ class armory_model extends CI_Model
         return $this->multirealm->get();
     }
 
-    public function getConquestPoints($MultiRealm, $guid)
+    public function getConquestPoints($realm, $guid)
     {
+        $MultiRealm = $this->wowrealm->getRealmConnectionData($realm);
         $this->multirealm = $MultiRealm;
         $this->multirealm->select('total_count');
         $this->multirealm->from('character_currency');
@@ -56,13 +58,14 @@ class armory_model extends CI_Model
         return $this->multirealm->get();
     }
 
-    public function getPlayerInfo($MultiRealm, $id)
+    public function getPlayerInfo($realm, $id)
     {
+        $MultiRealm = $this->wowrealm->getRealmConnectionData($realm);
         $this->multirealm = $MultiRealm;
         return $this->multirealm->select('*')->where('guid', $id)->get('characters');
     }
 
-    public function getCharInvs($MultiRealm, $id)
+    public function getCharInvs($realm, $id)
     {
         $SLOTS_ARMORY = array(
             '0' => '', //head
@@ -85,6 +88,7 @@ class armory_model extends CI_Model
             '17' => '', //ranged
             '18' => '', //tabard
         );
+        $MultiRealm = $this->wowrealm->getRealmConnectionData($realm);
         $this->multirealm = $MultiRealm;
         $this->multirealm->select('itemEntry, slot');
         $this->multirealm->from('character_inventory a');
@@ -102,28 +106,9 @@ class armory_model extends CI_Model
         return $SLOTS_ARMORY;
     }
 
-    public function getCharInvsLeft($MultiRealm, $id)
+    public function getAchievements($realm, $id)
     {
-        $this->multirealm = $MultiRealm;
-        $this->multirealm->select('itemEntry');
-        $this->multirealm->from('character_inventory a');
-        $this->multirealm->join('item_instance b', 'a.item = b.guid', 'left');
-        $this->multirealm->where('a.guid', $id)->where('a.bag', 0)->where('a.slot >=', 0)->where('a.slot <=', 8);
-        return $this->multirealm->get();
-    }
-
-    public function getCharsInvsRight($MultiRealm, $id)
-    {
-        $this->multirealm = $MultiRealm;
-        $this->multirealm->select('itemEntry');
-        $this->multirealm->from('character_inventory a');
-        $this->multirealm->join('item_instance b', 'a.item = b.guid', 'left');
-        $this->multirealm->where('a.guid', $id)->where('a.bag', 0)->where('a.slot >=', 9)->where('a.slot <=', 16);
-        return $this->multirealm->get();
-    }
-
-    public function getAchievements($MultiRealm, $id)
-    {
+        $MultiRealm = $this->wowrealm->getRealmConnectionData($realm);
         $this->multirealm = $MultiRealm;
         return $this->multirealm->select('achievement')->where('guid', $id)->get('character_achievement')->num_rows();
     }
