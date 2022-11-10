@@ -155,7 +155,7 @@ class Store_model extends CI_Model {
 
         if($charexist > 0 && $charcheck == $accountid)
         {
-            if($item['price_type'] == 1)
+            if($item['price_type'] == 1 || ($item['price_type'] == 4 && $dpprice > 0))
             {
                 if ($item['type'] == 1)
                 {
@@ -190,7 +190,7 @@ class Store_model extends CI_Model {
                 $this->insertStoreLog($accountid, $charid, $item['name'], $item['type'], $item['price_type'], $dpprice, '0');
                 return true;
             }
-            else if ($item['price_type'] == 2)
+            else if ($item['price_type'] == 2 || ($item['price_type'] == 4 && $vpprice > 0))
             {
                 if ($item['type'] == 1)
                 {
