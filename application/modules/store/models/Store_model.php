@@ -136,7 +136,7 @@ class Store_model extends CI_Model {
         $this->db->insert('store_logs', $data);
     }
 
-    public function PurchaseItem($id, $charid)
+    public function PurchaseItem($id, $charid, $vpCart, $dpCart)
     {
         $accountid = $this->session->userdata('wow_sess_id');
         $item = $this->getItem($id);
@@ -155,7 +155,7 @@ class Store_model extends CI_Model {
 
         if($charexist > 0 && $charcheck == $accountid)
         {
-            if($item['price_type'] == 1 || ($item['price_type'] == 4 && $dpprice > 0))
+            if($item['price_type'] == 1 || ($item['price_type'] == 4 && $dpCart > 0))
             {
                 if ($item['type'] == 1)
                 {
@@ -190,7 +190,7 @@ class Store_model extends CI_Model {
                 $this->insertStoreLog($accountid, $charid, $item['name'], $item['type'], $item['price_type'], $dpprice, '0');
                 return true;
             }
-            else if ($item['price_type'] == 2 || ($item['price_type'] == 4 && $vpprice > 0))
+            else if ($item['price_type'] == 2 || ($item['price_type'] == 4 && $vpCart > 0))
             {
                 if ($item['type'] == 1)
                 {
@@ -277,7 +277,7 @@ class Store_model extends CI_Model {
             foreach($this->cart->contents() as $item) {
                 $count = 1;
                 while ($count <= $item['qty']) {
-                    $this->PurchaseItem($item['id'], $item['guid']);
+                    $this->PurchaseItem($item['id'], $item['guid'], $vptotal, $dptotal);
                     $count++;
                 }
             }
