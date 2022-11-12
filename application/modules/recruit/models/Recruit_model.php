@@ -69,7 +69,9 @@ class Recruit_model extends CI_Model
         }
 
         $this->auth->set('recruiter', $recruitId)->where('id', $this->session->userdata('wow_sess_id'))->update('account');
-        $this->db->set('vp', 100)->where('id', $this->session->userdata('wow_sess_id'))->update('users');
+        $vpNow = $this->db->select('vp')->where('id', $this->session->userdata('wow_sess_id'))->get('users')->row('vp');
+        $vpReward = 100;
+        $this->db->set('vp', $vpNow + $vpReward)->where('id', $this->session->userdata('wow_sess_id'))->update('users');
         return 'accountIDFound';
     }
 }
