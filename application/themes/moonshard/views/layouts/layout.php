@@ -454,7 +454,7 @@
             <div class="uk-visible-logo-in uk-visible@m">
               <a href="<?= base_url(); ?>">
                 <img
-                  src="https://moonshard-wow-resources.com/application/themes/moonshard/assets/images/logo.png"
+		src="<?= base_url(); ?>application/themes/moonshard/assets/images/logo.png"
                 />
               </a>
             </div>
