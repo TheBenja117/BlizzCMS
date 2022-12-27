@@ -64,7 +64,7 @@
                         <span class="uk-text-middle">
                           <?php if ($this->store_model->getType($top->id) == 1) : ?>
                             <!-- You can use 'es.wowhead' or any other as 'ru, fr, cn' -->
-                            <a href="https://wowhead.com/item=<?= $this->store_model->getCommand($top->store_item); ?>"><?= $this->store_model->getName($top->store_item); ?></a>
+                            <a href="http://cata.cavernoftime.com/item=<?= $this->store_model->getCommand($top->store_item); ?>"><?= $this->store_model->getName($top->store_item); ?></a>
                           <?php else : ?>
                             <a href="#"><?= $this->store_model->getName($top->store_item); ?></a>
                           <?php endif; ?>
@@ -82,10 +82,12 @@
                               <span class="blizzcms-item-price"><span uk-tooltip="title: <?= $this->lang->line('panel_vp'); ?>"><i class="vp-icon"></i></span><?= $this->store_model->getPriceVP($top->store_item); ?></span>
                             <?php elseif ($this->store_model->getPriceType($top->store_item) == 3) : ?>
                               <span class="blizzcms-item-price"><span uk-tooltip="title: <?= $this->lang->line('panel_dp'); ?>"><i class="dp-icon"></i></span><?= $this->store_model->getPriceDP($top->store_item); ?> <span class="uk-badge">&amp;</span> <span uk-tooltip="title: <?= $this->lang->line('panel_vp'); ?>"><i class="vp-icon"></i></span><?= $this->store_model->getPriceVP($top->store_item); ?></span>
-                            <?php endif; ?>
+                            <?php elseif ($this->store_model->getPriceType($top->store_item) == 4) : ?>
+							  <span class="blizzcms-item-price"><span uk-tooltip="title: <?= $this->lang->line('panel_dp'); ?>"><i class="vp-icon"></i></span><?= $this->store_model->getPriceDP($top->store_item); ?> <span class="uk-badge">or</span> <span uk-tooltip="title: <?= $this->lang->line('panel_vp'); ?>"><i class="vp-icon"></i></span><?= $this->store_model->getPriceVP($top->store_item); ?></span>
+							<?php endif; ?>
                           </div>
                           <div class="uk-width-auto">
-                            <button class="uk-button uk-button-default uk-button-small" id="button_item<?= $top->store_item ?>" value="<?= $top->store_item ?>" onclick="AddItem(event, this.value)"><i class="fas fa-cart-plus"></i> <?= $this->lang->line('button_cart'); ?></button>
+                            <button class="uk-button uk-button-default uk-button-small" id="button_item<?= $top->store_item ?>" value="<?= $top->store_item ?>" onclick="AddItem(event, this.value, <?= $this->store_model->getPriceType($top->store_item) ?>)"><i class="fas fa-cart-plus"></i> <?= $this->lang->line('button_cart'); ?></button>
                           </div>
                         </div>
                       </div>
@@ -103,14 +105,47 @@
     </section>
 
     <script>
-      function AddItem(e, value) {
+      async function AddItem(e, value, type = 1) {
         e.preventDefault();
-
+        if (type === 4) {
+            let response =  await Swal.fire({
+              title: '<strong style="font-family:Arial, Helvetica, sans-serif;color:#fff"><?= $this->lang->line('store_select_payment'); ?></strong>',
+              showDenyButton: true,
+              showCancelButton: true,
+              confirmButtonColor: "#2890c8",
+              denyButtonColor: "#2890c8",
+              background: "rgba(9, 85, 135, 0.97)",
+              confirmButtonText: 'DP',
+              denyButtonText: 'VP'
+            })
+            if (response.isConfirmed) {
+              await Swal.fire({
+                title: '<strong style="font-family:Arial, Helvetica, sans-serif;color:#fff"><?= $this->lang->line('store_dp_selected'); ?></strong>',
+                background: "rgba(9, 85, 135, 0.97)",
+                icon: 'success',
+                showConfirmButton: false,
+                timer: 1500
+              })
+              type = 1;
+            } else if (response.isDenied) {
+              await Swal.fire({
+                title: '<strong style="font-family:Arial, Helvetica, sans-serif;color:#fff"><?= $this->lang->line('store_vp_selected'); ?></strong>',
+                background: "rgba(9, 85, 135, 0.97)",
+                icon: 'success',
+                showConfirmButton: false,
+                timer: 1500
+              })
+              type = 2;
+            } else {
+              return;
+            }
+        }
         $.ajax({
           url: "<?= base_url($lang . '/cart/add'); ?>",
           method: "POST",
           data: {
-            value
+            value,
+            type
           },
           dataType: "text",
           success: function(response) {
